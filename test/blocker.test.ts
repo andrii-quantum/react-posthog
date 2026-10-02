@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import Sentry, { Sentry as NamedSentry } from '../src/index';
 
-const overlay = () => document.querySelector('[data-sentry/react]');
+const overlay = () => document.querySelector('[data-@react/plugin]');
 
 describe('Sentry', () => {
   let button: HTMLButtonElement;
@@ -66,7 +66,7 @@ describe('Sentry', () => {
   it('is idempotent', () => {
     Sentry.init();
     Sentry.init();
-    expect(document.querySelectorAll('[data-sentry/react]')).toHaveLength(1);
+    expect(document.querySelectorAll('[data-@react/plugin]')).toHaveLength(1);
   });
 
   it('keeps the overlay last and makes new elements inert', async () => {
