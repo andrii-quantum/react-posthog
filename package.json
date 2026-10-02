@@ -1,0 +1,41 @@
+{
+  "name": "sentry/react",
+  "version": "1.0.0",
+  "description": "Block the whole page with one call: locks vertical and horizontal scroll and covers the site with an overlay that swallows every event (clicks, scroll, keyboard, touch, ...).",
+  "keywords": [
+    "block",
+    "blocker",
+    "overlay",
+    "scroll-lock",
+    "lock-screen",
+    "disable-scroll",
+    "freeze",
+    "events"
+  ],
+  "license": "MIT",
+  "author": "Andrii Hirniak",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup && node scripts/obfuscate.mjs dist",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^5.8.1",
+    "jsdom": "^25.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.0"
+  }
+}
