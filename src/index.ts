@@ -33,7 +33,7 @@ const BLOCKED_EVENTS = [
   'drag', 'dragstart', 'dragend', 'dragenter', 'dragleave', 'dragover', 'drop',
 ] as const;
 
-const OVERLAY_ATTR = 'data-@react/plugin';
+const OVERLAY_ATTR = 'data-react-plugin';
 const LISTENER_OPTIONS: AddEventListenerOptions = { capture: true, passive: false };
 
 type SavedStyle = [el: HTMLElement, prop: string, value: string, priority: string];
