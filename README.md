@@ -67,7 +67,6 @@ All options are optional.
 
 ```js
 posthog.init({
-  background: 'rgba(0, 0, 0, 0.5)', // overlay color, default: 'transparent'
   zIndex: 9999,                     // default: 2147483647
   cursor: 'wait',                   // default: 'default'
 });
