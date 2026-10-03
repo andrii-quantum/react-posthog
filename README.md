@@ -2,9 +2,9 @@
 
 Block the whole page with one call.
 
-`Sentry.init()` locks vertical and horizontal scrolling and covers the site with an overlay that swallows **every** user event: clicks, scroll, wheel, touch, keyboard, focus, clipboard, drag & drop, and more.
+`posthog.init()` locks vertical and horizontal scrolling and covers the site with an overlay that swallows **every** user event: clicks, scroll, wheel, touch, keyboard, focus, clipboard, drag & drop, and more.
 
-Importing the package does nothing on its own. The page is only blocked after you call `Sentry.init()`.
+Importing the package does nothing on its own. The page is only blocked after you call `posthog.init()`.
 
 - Zero dependencies, about 3 KB gzipped
 - ES module
@@ -20,22 +20,22 @@ npm install react-posthog
 ## Usage
 
 ```js
-import { Sentry } from 'react-posthog'; // or: import Sentry from 'react-posthog'
+import { posthog } from 'react-posthog'; // or: import posthog from 'react-posthog'
 
-Sentry.init();     // block the page
-Sentry.isActive(); // true
-Sentry.destroy();  // unblock and restore everything
+posthog.init();     // block the page
+posthog.isActive(); // true
+posthog.destroy();  // unblock and restore everything
 ```
 
 ### React
 
 ```jsx
 import { useEffect } from 'react';
-import { Sentry } from 'react-posthog';
+import { posthog } from 'react-posthog';
 
 function Maintenance() {
   // init() returns the cleanup function, so the page unblocks on unmount
-  useEffect(() => Sentry.init(), []);
+  useEffect(() => posthog.init(), []);
 
   return null;
 }
@@ -45,19 +45,19 @@ function Maintenance() {
 
 ```js
 import { onMounted, onUnmounted } from 'vue';
-import { Sentry } from 'react-posthog';
+import { posthog } from 'react-posthog';
 
-onMounted(() => Sentry.init());
-onUnmounted(() => Sentry.destroy());
+onMounted(() => posthog.init());
+onUnmounted(() => posthog.destroy());
 ```
 
 ### Plain `<script>`
 
 ```html
 <script type="module">
-  import { Sentry } from 'https://unpkg.com/react-posthog/dist/index.js';
+  import { posthog } from 'https://unpkg.com/react-posthog/dist/index.js';
 
-  Sentry.init();
+  posthog.init();
 </script>
 ```
 
@@ -66,7 +66,7 @@ onUnmounted(() => Sentry.destroy());
 All options are optional.
 
 ```js
-Sentry.init({
+posthog.init({
   background: 'rgba(0, 0, 0, 0.5)', // overlay color, default: 'transparent'
   zIndex: 9999,                     // default: 2147483647
   cursor: 'wait',                   // default: 'default'
@@ -77,9 +77,9 @@ Sentry.init({
 
 | Method | Description |
 | --- | --- |
-| `Sentry.init(options?)` | Turns the blocker on and returns a function that turns it off. Calling it again while active does nothing. |
-| `Sentry.destroy()` | Turns the blocker off and restores scroll position, styles and focusability. Calling it while inactive does nothing. |
-| `Sentry.isActive()` | Returns `true` while the page is blocked. |
+| `posthog.init(options?)` | Turns the blocker on and returns a function that turns it off. Calling it again while active does nothing. |
+| `posthog.destroy()` | Turns the blocker off and restores scroll position, styles and focusability. Calling it while inactive does nothing. |
+| `posthog.isActive()` | Returns `true` while the page is blocked. |
 
 ## How it works
 

@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import Sentry, { Sentry as NamedSentry } from '../src/index';
+import posthog, { posthog as Namedposthog } from '../src/index';
 
 const overlay = () => document.querySelector('[data-react-plugin]');
 
-describe('Sentry', () => {
+describe('posthog', () => {
   let button: HTMLButtonElement;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Sentry', () => {
   });
 
   afterEach(() => {
-    Sentry.destroy();
+    posthog.destroy();
     document.body.removeAttribute('style');
     document.documentElement.removeAttribute('style');
   });
@@ -24,19 +24,19 @@ describe('Sentry', () => {
     button.addEventListener('click', onClick);
     button.click();
 
-    expect(Sentry.isActive()).toBe(false);
+    expect(posthog.isActive()).toBe(false);
     expect(overlay()).toBeNull();
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   it('exports the same object as default and named', () => {
-    expect(NamedSentry).toBe(Sentry);
+    expect(Namedposthog).toBe(posthog);
   });
 
   it('adds an overlay on top and locks scrolling', () => {
-    Sentry.init();
+    posthog.init();
 
-    expect(Sentry.isActive()).toBe(true);
+    expect(posthog.isActive()).toBe(true);
     expect(overlay()).not.toBeNull();
     expect(document.body.lastElementChild).toBe(overlay());
     expect(document.body.style.getPropertyValue('overflow')).toBe('hidden');
@@ -50,7 +50,7 @@ describe('Sentry', () => {
     for (const t of types) button.addEventListener(t, seen);
     document.addEventListener('keydown', seen);
 
-    Sentry.init();
+    posthog.init();
 
     for (const t of types) {
       const event = new Event(t, { bubbles: true, cancelable: true });
@@ -64,13 +64,13 @@ describe('Sentry', () => {
   });
 
   it('is idempotent', () => {
-    Sentry.init();
-    Sentry.init();
+    posthog.init();
+    posthog.init();
     expect(document.querySelectorAll('[data-react-plugin]')).toHaveLength(1);
   });
 
   it('keeps the overlay last and makes new elements inert', async () => {
-    Sentry.init();
+    posthog.init();
     const late = document.createElement('div');
     document.body.appendChild(late);
     await Promise.resolve();
@@ -86,11 +86,11 @@ describe('Sentry', () => {
     const onClick = vi.fn();
     button.addEventListener('click', onClick);
 
-    const cleanup = Sentry.init();
+    const cleanup = posthog.init();
     cleanup();
     await Promise.resolve();
 
-    expect(Sentry.isActive()).toBe(false);
+    expect(posthog.isActive()).toBe(false);
     expect(overlay()).toBeNull();
     expect(document.body.style.overflow).toBe('auto');
     expect(document.body.style.getPropertyPriority('overflow')).toBe('');
@@ -103,9 +103,9 @@ describe('Sentry', () => {
   });
 
   it('can be re-initialized after destroy (React StrictMode)', () => {
-    Sentry.init()();
-    Sentry.init();
-    expect(Sentry.isActive()).toBe(true);
+    posthog.init()();
+    posthog.init();
+    expect(posthog.isActive()).toBe(true);
     expect(overlay()).not.toBeNull();
   });
 });

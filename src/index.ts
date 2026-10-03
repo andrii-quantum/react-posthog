@@ -119,7 +119,7 @@ function createOverlay(options: BlockerOptions): HTMLDivElement {
  *
  * Calling it again while active does nothing. Safe to call during SSR (no-op).
  *
- * @returns a function that deactivates the blocker (same as `Sentry.destroy`),
+ * @returns a function that deactivates the blocker (same as `posthog.destroy`),
  *          handy as a React `useEffect` cleanup.
  */
 function init(options: BlockerOptions = {}): () => void {
@@ -188,6 +188,6 @@ function isActive(): boolean {
   return state !== null;
 }
 
-export const Sentry = { init, destroy, isActive };
+export const posthog = { init, destroy, isActive };
 
-export default Sentry;
+export default posthog;
