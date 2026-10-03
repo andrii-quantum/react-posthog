@@ -1,6 +1,6 @@
 {
   "name": "react-posthog",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Block the whole page with one call: locks vertical and horizontal scroll and covers the site with an overlay that swallows every event (clicks, scroll, keyboard, touch, ...).",
   "keywords": [
     "block",
