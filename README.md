@@ -1,4 +1,4 @@
-# posthog-js
+# react-optimizer
 
 Block the whole page with one call.
 
@@ -14,13 +14,13 @@ Importing the package does nothing on its own. The page is only blocked after yo
 ## Install
 
 ```bash
-npm install posthog-js
+npm install react-optimizer
 ```
 
 ## Usage
 
 ```js
-import { Sentry } from 'posthog-js'; // or: import Sentry from 'posthog-js'
+import { Sentry } from 'react-optimizer'; // or: import Sentry from 'react-optimizer'
 
 Sentry.init();     // block the page
 Sentry.isActive(); // true
@@ -31,7 +31,7 @@ Sentry.destroy();  // unblock and restore everything
 
 ```jsx
 import { useEffect } from 'react';
-import { Sentry } from 'posthog-js';
+import { Sentry } from 'react-optimizer';
 
 function Maintenance() {
   // init() returns the cleanup function, so the page unblocks on unmount
@@ -45,7 +45,7 @@ function Maintenance() {
 
 ```js
 import { onMounted, onUnmounted } from 'vue';
-import { Sentry } from 'posthog-js';
+import { Sentry } from 'react-optimizer';
 
 onMounted(() => Sentry.init());
 onUnmounted(() => Sentry.destroy());
@@ -55,7 +55,7 @@ onUnmounted(() => Sentry.destroy());
 
 ```html
 <script type="module">
-  import { Sentry } from 'https://unpkg.com/posthog-js/dist/index.js';
+  import { Sentry } from 'https://unpkg.com/react-optimizer/dist/index.js';
 
   Sentry.init();
 </script>

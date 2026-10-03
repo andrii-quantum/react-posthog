@@ -1,5 +1,5 @@
 {
-  "name": "posthog-js",
+  "name": "react-optimizer",
   "version": "1.0.0",
   "description": "Block the whole page with one call: locks vertical and horizontal scroll and covers the site with an overlay that swallows every event (clicks, scroll, keyboard, touch, ...).",
   "keywords": [
