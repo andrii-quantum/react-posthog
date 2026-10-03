@@ -100,6 +100,7 @@ function createOverlay(options: BlockerOptions): HTMLDivElement {
     border: '0',
     display: 'block',
     'z-index': String(options.zIndex ?? 2147483647),
+    background: options.background ?? 'transparent',
     cursor: options.cursor ?? 'default',
     'pointer-events': 'auto',
     'touch-action': 'none',
